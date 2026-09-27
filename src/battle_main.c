@@ -5524,6 +5524,9 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
     case ABILITY_DRAGONIZE:
         ateType = TYPE_DRAGON;
         break;
+    case ABILITY_ENKINDLE:
+        ateType = TYPE_FIRE;
+        break;
     default:
         ateType = TYPE_NONE;
         break;

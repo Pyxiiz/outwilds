@@ -2703,6 +2703,22 @@ static enum CancelerResult CancelerPreAnimActivations(struct BattleCalcValues *c
                 }
             }
         }
+        else if (GetWeather() & B_WEATHER_SNOW_PRIMAL)
+        {
+            for (enum BattlerId battlerDef = 0; battlerDef < gBattlersCount; battlerDef++)
+            {
+                if (ShouldSkipBattlerForDamage(cv->battlerAtk, battlerDef))
+                    continue;
+
+                if (gBattleStruct->moveResultFlags[battlerDef] & MOVE_RESULT_HIGH_EFFECTIVENESS
+                 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE))
+                {
+                    BattleScriptCall(BattleScript_AttackWeakenedByStrongWinds);
+                    gBattleStruct->eventState.moveEndBlock++;
+                    return CANCELER_RESULT_RUN_SCRIPT;
+                }
+            }
+        }
         gBattleStruct->eventState.moveEndBlock++;
     case PRE_ANIM_TERA_SHELL:
         for (enum BattlerId battler = B_BATTLER_0; battler < MAX_BATTLERS_COUNT; battler++)

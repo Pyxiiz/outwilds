@@ -5603,6 +5603,74 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .levelUpLearnset = sDhelmiseLevelUpLearnset,
         .teachableLearnset = sDhelmiseTeachableLearnset,
     },
+
+    [SPECIES_DHELMISE_MEGA] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 171,
+        .baseDefense   = 120,
+        .baseSpeed     = 115,
+        .baseSpAttack  = 35,
+        .baseSpDefense = 96,
+        .types = MON_TYPES(TYPE_GHOST, TYPE_STEEL),
+        .catchRate = 25,
+        .expYield = 181,
+        .evYield_Attack = 2,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_STEELWORKER, ABILITY_STEELWORKER, ABILITY_STEELWORKER },
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+        .speciesName = _("Dhelmise"),
+        .cryId = CRY_DHELMISE,
+        .natDexNum = NATIONAL_DEX_DHELMISE,
+        .categoryName = _("Sea Creeper"),
+        .height = 39,
+        .weight = 2100,
+        .description = COMPOUND_STRING(
+            "Mega evolution has caused the seaweed\n"
+            "which was once its body to dissipate.\n"
+            "It swings its anchor around with\n"
+            "newfound power and dexterity."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 510,
+        .trainerOffset = 11,
+        .frontPic = gMonFrontPic_DhelmiseMega,
+        .frontPicSize = MON_COORDS_SIZE(48, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        .frontAnimId = ANIM_SWING_CONVEX,
+        .enemyMonElevation = 2,
+        .backPic = gMonBackPic_DhelmiseMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 3,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_DhelmiseMega,
+        .shinyPalette = gMonShinyPalette_DhelmiseMega,
+        .iconSprite = gMonIcon_DhelmiseMega,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-1, 12, SHADOW_SIZE_M)
+        FOOTPRINT(Dhelmise)
+        OVERWORLD(
+            sPicTable_Dhelmise,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Dhelmise,
+            gShinyOverworldPalette_Dhelmise
+        )
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sDhelmiseLevelUpLearnset,
+        .teachableLearnset = sDhelmiseTeachableLearnset,
+        .formSpeciesIdTable = sDhelmiseFormSpeciesIdTable,
+        .formChangeTable = sDhelmiseFormChangeTable,
+    },
 #endif //P_FAMILY_DHELMISE
 
 #if P_FAMILY_JANGMO_O

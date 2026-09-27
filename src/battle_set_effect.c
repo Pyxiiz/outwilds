@@ -25,6 +25,16 @@ static inline bool32 IgnoreTargetingForMoveEffect(enum MoveEffect moveEffect);
 static bool32 DoesSubstituteBlockMoveEffectOnTarget(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum MoveEffect moveEffect);
 static bool32 IsFinalStrikeEffect(enum MoveEffect moveEffect);
 
+static const u8 sShadowRendHpScaleToHealPercentTable[] =
+{
+    1, 100,
+    4, 90,
+    9, 80,
+    16, 70,
+    32, 60,
+    48, 50
+};
+
 static void HandleSetEffectNone(struct BattleCalcValues *cv, struct SetEffect *se)
 {
     gBattlescriptCurrInstr = se->script;
@@ -132,6 +142,51 @@ static void HandleSetEffectAbsorb(struct BattleCalcValues *cv, struct SetEffect 
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABSORB;
             BattleScriptPush(se->script);
             gBattlescriptCurrInstr = BattleScript_EffectAbsorb;
+        }
+    }
+}
+
+static void HandleSetEffectShadowRend(struct BattleCalcValues *cv, struct SetEffect *se)
+{
+    if (gBattleStruct->moveDamage[cv->battlerDef] > 0
+     && IsBattlerTurnDamaged(cv->battlerDef, INCLUDING_SUBSTITUTES)
+     && IsBattlerAlive(cv->battlerAtk))
+    {
+        u32 i;
+        u32 hpFraction = GetScaledHPFraction(gBattleMons[cv->battlerAtk].hp, gBattleMons[cv->battlerAtk].maxHP, 48);
+        u32 healPercent = 50; // fallback, shouldn't be hit given the table covers the full range up to 48
+ 
+        for (i = 0; i < ARRAY_COUNT(sShadowRendHpScaleToHealPercentTable); i += 2)
+        {
+            if (hpFraction <= sShadowRendHpScaleToHealPercentTable[i])
+            {
+                healPercent = sShadowRendHpScaleToHealPercentTable[i + 1];
+                break;
+            }
+        }
+ 
+        s32 healAmount = (gBattleStruct->moveDamage[cv->battlerDef] * healPercent / 100);
+        healAmount = GetDrainedBigRootHp(cv->battlerAtk, healAmount); // keep Big Root synergy, same as vanilla Absorb
+        gEffectBattler = cv->battlerAtk;
+        gBattlerAbility = gBattleScripting.battler = cv->battlerDef;
+ 
+        // Liquid Ooze / Dream Eater interaction and the max-HP message check
+        // are copied verbatim from HandleSetEffectAbsorb -- Shadow Rend has
+        // no reason to diverge from vanilla drain behavior here, only the
+        // percentage calculation itself is different.
+        if (cv->abilities[cv->battlerDef] == ABILITY_LIQUID_OOZE)
+        {
+            SetPassiveDamageAmount(cv->battlerAtk, healAmount);
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABSORB_OOZE;
+            BattleScriptPush(se->script);
+            gBattlescriptCurrInstr = BattleScript_EffectAbsorbLiquidOoze;
+        }
+        else if (!IsBattlerAtMaxHp(cv->battlerAtk) || GetConfig(B_ABSORB_MESSAGE) < GEN_5)
+        {
+            SetHealAmount(cv->battlerAtk, healAmount);
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABSORB;
+            BattleScriptPush(se->script);
+            gBattlescriptCurrInstr = BattleScript_EffectAbsorb; // reuse the existing drain script/animation, no new script needed
         }
     }
 }
@@ -1327,6 +1382,7 @@ static void (*const sSetEffectHandlers[])(struct BattleCalcValues *cv, struct Se
     [MOVE_EFFECT_CONFUSION] = HandleSetEffectConfusion,
     [MOVE_EFFECT_FLINCH] = HandleSetEffectFlinch,
     [MOVE_EFFECT_ABSORB] = HandleSetEffectAbsorb,
+    [MOVE_EFFECT_SHADOW_REND] = HandleSetEffectShadowRend,
     [MOVE_EFFECT_RANDOM_FROM_LIST] = HandleSetEffectRandomFromList,
     [MOVE_EFFECT_UPROAR] = HandleSetEffectUproar,
     [MOVE_EFFECT_PAYDAY] = HandleSetEffectPayday,

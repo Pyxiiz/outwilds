@@ -6449,3 +6449,9 @@ BattleScript_BelchFails::
 	printstring STRINGID_BELCHCANTSELECT
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
+
+BattleScript_AttackWeakenedByEternalSnow::
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_ATTACKWEAKENEDBETERNALSNOW
+	waitmessage B_WAIT_TIME_LONG
+	return

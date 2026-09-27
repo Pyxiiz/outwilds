@@ -185,6 +185,8 @@ static bool32 DoesAbilityBenefitFromWeather(enum Ability ability, u32 weather)
     case ABILITY_PROTOSYNTHESIS:
     case ABILITY_SOLAR_POWER:
         return (weather & B_WEATHER_SUN);
+    case ABILITY_NOMAD:
+        return (weather & B_WEATHER_ANY);
     default:
         break;
     }

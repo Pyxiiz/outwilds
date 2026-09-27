@@ -2112,3 +2112,9 @@ const u16 gItemIconPalette_SwapSnack[] = INCGFX_U16("graphics/items/icon_palette
 
 const u32 gItemIcon_TwiceSpicedRadish[] = INCGFX_U32("graphics/items/icons/twice_spiced_radish.png", ".4bpp.smol");
 const u16 gItemIconPalette_TwiceSpicedRadish[] = INCGFX_U16("graphics/items/icon_palettes/twice_spiced_radish.pal", ".gbapal");
+
+const u32 gItemIcon_GenesisOrb[] = INCBIN_U32("graphics/items/icons/genesis_orb.4bpp.smol");
+const u16 gItemIconPalette_GenesisOrb[] = INCBIN_U16("graphics/items/icon_palettes/genesis_orb.gbapal");
+
+const u32 gItemIcon_UltrakyuriumZ[] = INCGFX_U32("graphics/items/icons/ultranecrozium_z.png", ".4bpp.smol");
+const u16 gItemIconPalette_UltrakyuriumZ[] = INCGFX_U16("graphics/items/icon_palettes/genesis_orb.pal", ".gbapal");

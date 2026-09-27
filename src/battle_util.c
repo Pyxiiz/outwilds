@@ -1574,6 +1574,11 @@ u32 TrySetCantSelectMoveBattleScript(enum BattlerId battler)
         if (SetCantSelectScript(battler, gCurrentMove, BattleScript_SelectingNotAllowedMoveAssaultVestInPalace, BattleScript_SelectingNotAllowedMoveAssaultVest))
             limitations++;
     }
+    if (GetBattlerAbility(battler) == ABILITY_RAGE_OF_FRENZY && IsBattleMoveStatus(move) && moveEffect != EFFECT_ME_FIRST)
+    {
+            gSelectionBattleScripts[battler] = BattleScript_RageOfFrenzyBlocksStatus;
+            limitations++;
+    }
     if (dynamaxBypassCheck && (GetBattlerAbility(battler) == ABILITY_GORILLA_TACTICS) && *choicedMove != MOVE_NONE
               && *choicedMove != MOVE_UNAVAILABLE && *choicedMove != move)
     {
@@ -2383,6 +2388,19 @@ bool32 CanAbilityAbsorbMove(struct DamageContext *ctx)
                 battleScript = BattleScript_AbilityProtectedTarget;
         }
         break;
+        case ABILITY_ETHEREAL_STAGE:
+        if (gFieldStatuses & STATUS_FIELD_ETHEREAL_STAGE)
+        {
+            if (IsBattleMoveStatus(move))
+            {
+                if (!(GetBattlerMoveTargetType(battlerAtk, move) & (MOVE_TARGET_OPPONENTS_FIELD | MOVE_TARGET_ALL_BATTLERS)))
+                    battleScript = BattleScript_AbilityProtectedTarget;
+            }
+        }
+        break;
+    default:
+        break;
+    }
     default:
         break;
     }
@@ -3547,6 +3565,14 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                     BattleScriptCall(BattleScript_SupremeOverlordActivates);
                     effect++;
                 }
+            }
+            break;
+        case ABILITY_LAST_STAND:
+            gSpecialStatuses[battler].switchInAbilityDone = TRUE;
+            if (shouldAbilityTrigger && IsLastMonAlive(battler))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_LastStandActivates);
+                effect++;
             }
             break;
         case ABILITY_ZERO_TO_HERO:
@@ -6271,6 +6297,11 @@ static inline u32 CalcMoveBasePower(struct DamageContext *ctx)
          && !((GetMoveAdditionalEffectById(move, 0)->moveEffect == MOVE_EFFECT_REMOVE_STATUS) && DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
             basePower *= 2;
         break;
+    case EFFECT_DARK_VOID_ZA:
+        if ((gBattleMons[battlerDef].status1 | (STATUS1_SLEEP * (ctx->abilityDef == ABILITY_COMATOSE))) & GetMoveEffectArg_Status(move)
+         && !((GetMoveAdditionalEffectById(move, 0)->moveEffect == MOVE_EFFECT_REMOVE_STATUS) && DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
+            gBattleMovePower *= 2;
+        break;
     case EFFECT_POWER_BASED_ON_TARGET_HP:
         basePower = gBattleMons[battlerDef].hp * basePower / gBattleMons[battlerDef].maxHP;
         break;
@@ -6643,6 +6674,10 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         if (moveType == TYPE_DRAGON && gBattleStruct->battlerState[battlerAtk].ateBoost)
             modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_ATE_MULTIPLIER) >= GEN_7 ? 1.2 : 1.3));
         break;
+    case ABILITY_ENKINDLE:
+        if (moveType == TYPE_FIRE && gBattleStruct->battlerState[battlerAtk].ateBoost)
+            modifier = uq4_12_multiply(modifier, UQ_4_12(GetConfig(B_ATE_MULTIPLIER) >= GEN_7 ? 1.2 : 1.3));
+        break;
     case ABILITY_NORMALIZE:
         if (moveType == TYPE_NORMAL && gBattleStruct->battlerState[battlerAtk].ateBoost && GetConfig(B_ATE_MULTIPLIER) >= GEN_7)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.2));
@@ -6659,8 +6694,15 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
         if (IsSlicingMove(move))
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
         break;
+    case ABILITY_LAST_STAND:
+        if(IsLastMonAlive(battlerAtk))
+            modifier = uq4_12_multiply(modifier, UQ_4_12(1.5));
+        break;
     case ABILITY_SUPREME_OVERLORD:
         modifier = uq4_12_multiply(modifier, GetSupremeOverlordModifier(battlerAtk));
+        break;
+    case ABILITY_SPIRIT_AEGIS:
+        modifier = uq4_12_multiply(modifier, UQ_4_12(1+(1-(gBattleMons[ctx->battlerDef].hp)/gBattleMons[ctx->battlerDef].maxHP)));
         break;
     default:
         break;
@@ -6720,6 +6762,18 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct DamageContext *ctx)
     case ABILITY_DRY_SKIN:
         if (moveType == TYPE_FIRE)
             modifier = uq4_12_multiply(modifier, UQ_4_12(1.25));
+        break;
+    case ABILITY_COMBAT_SHIELD:
+        if (moveType == TYPE_FAIRY)
+        {
+            modifier = uq4_12_multiply(modifier, UQ_4_12(0.5));
+            if (ctx->updateFlags)
+                RecordAbilityBattle(battlerDef, ctx->abilityDef);
+        }
+    case ABILITY_LAST_STAND:
+        if (IsLastMonAlive(battlerDef)){
+            modifier = uq4_12_multiply(modifier, UQ_4_12(0.65));
+        }
         break;
     default:
         break;
@@ -8107,6 +8161,13 @@ s32 GetAdjustedDamage(struct DamageContext *ctx, s32 damage)
         gLastUsedAbility = ABILITY_STURDY;
         gBattleStruct->moveResultFlags[ctx->battlerDef] |= MOVE_RESULT_STURDIED;
     }
+    else if (ctx->abilities[ctx->battlerDef] == ABILITY_SPIRIT_AEGIS && IsBattlerAtMaxHp(ctx->battlerDef))
+    {
+        enduredHit = TRUE;
+        RecordAbilityBattle(ctx->battlerDef, ABILITY_SPIRIT_AEGIS);
+        gLastUsedAbility = ABILITY_SPIRIT_AEGIS;
+        gBattleStruct->moveResultFlags[ctx->battlerDef] |= MOVE_RESULT_STURDIED;
+    }
     else if (ctx->holdEffects[ctx->battlerDef] == HOLD_EFFECT_FOCUS_BAND && rand < GetBattlerHoldEffectParam(ctx->battlerDef))
     {
         enduredHit = TRUE;
@@ -8546,6 +8607,7 @@ bool32 DoesSpeciesUseHoldItemToChangeForm(enum Species species, enum Item heldIt
         {
         case FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM:
         case FORM_CHANGE_BATTLE_PRIMAL_REVERSION:
+        case FORM_CHANGE_BATTLE_GENESIS_REVERSION:
         case FORM_CHANGE_BATTLE_ULTRA_BURST:
         case FORM_CHANGE_ITEM_HOLD:
         case FORM_CHANGE_BEGIN_BATTLE:

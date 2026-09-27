@@ -5188,6 +5188,84 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .levelUpLearnset = sDrapionLevelUpLearnset,
         .teachableLearnset = sDrapionTeachableLearnset,
     },
+
+    [SPECIES_DRAPION_MEGA] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 100,
+        .baseDefense   = 130,
+        .baseSpeed     = 125,
+        .baseSpAttack  = 60,
+        .baseSpDefense = 115,
+        .types = MON_TYPES(TYPE_POISON, TYPE_DARK),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 175 : 204,
+        .evYield_Defense = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_HUGE_POWER, ABILITY_HUGE_POWER, ABILITY_HUGE_POWER },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("Drapion"),
+        .cryId = CRY_DRAPION,
+        .natDexNum = NATIONAL_DEX_DRAPION,
+        .categoryName = _("Ogre Scorp"),
+        .height = 13,
+        .weight = 615,
+        .description = COMPOUND_STRING(
+            "Mega evolution has caused it to become\n"
+            "even more deadly. Using its many toxic\n"
+            "stingers, it strikes down foes without\n"
+            "mercy."
+        ),
+        .pokemonScale = 272,
+        .pokemonOffset = 5,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_DrapionMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
+        .frontPicYOffset = 8,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 5),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 2),
+            ANIMCMD_FRAME(1, 2),
+            ANIMCMD_FRAME(0, 2),
+            ANIMCMD_FRAME(1, 2),
+            ANIMCMD_FRAME(0, 2),
+            ANIMCMD_FRAME(1, 2),
+            ANIMCMD_FRAME(0, 1),
+        ),
+        .frontAnimId = ANIM_V_JUMPS_BIG,
+        .backPic = gMonBackPic_DrapionMega,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_V_SHAKE_H_SLIDE,
+        .palette = gMonPalette_DrapionMega,
+        .shinyPalette = gMonShinyPalette_DrapionMega,
+        .iconSprite = gMonIcon_DrapionMega,
+        .iconPalIndex = 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-3, 6, SHADOW_SIZE_L)
+        FOOTPRINT(Drapion)
+        OVERWORLD(
+            sPicTable_Drapion,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Drapion,
+            gShinyOverworldPalette_Drapion
+        )
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sDrapionLevelUpLearnset,
+        .teachableLearnset = sDrapionTeachableLearnset,
+        .formSpeciesIdTable = sDrapionFormSpeciesIdTable,
+        .formChangeTable = sDrapionFormChangeTable,
+    },
+
 #endif //P_FAMILY_SKORUPI
 
 #if P_FAMILY_CROAGUNK

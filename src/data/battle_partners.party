@@ -11,34 +11,35 @@ Class: Rival
 Pic: Steven
 Gender: Male
 Music: Male
-AI: Basic Trainer
+AI: VGC
 
-Metang
-Brave Nature
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 Def / 6 SpA
-- Light Screen
-- Psychic
-- Reflect
-- Metal Claw
+Corviknight @ Rocky Helmet  
+Ability: Mirror Armor  
+Level: 85  
+EVs: 248 HP / 8 Def / 252 SpD  
+Careful Nature  
+- Brave Bird  
+- Bulk Up  
+- Tailwind  
+- Roost  
 
-Skarmory
-Impish Nature
-Level: 43
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 6 SpA / 252 SpD
-- Toxic
-- Aerial Ace
-- Protect
-- Steel Wing
+Kitsokami @ Focus Sash  
+Ability: Wonder Guard  
+Level: 85  
+Tera Type: Steel  
+EVs: 4 Atk / 252 SpA / 252 Spe  
+Hasty Nature  
+- Soul Skewer  
+- Shadow Sneak  
+- Dark Void ZA  
+- Magic Coat 
 
-Aggron
-Adamant Nature
-Level: 44
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 252 SpA / 6 SpD
-- Thunder
-- Protect
-- Solar Beam
-- Dragon Claw
+Metagross @ Metagrossite  
+Ability: Clear Body  
+Level: 85  
+EVs: 4 HP / 252 Atk / 252 Spe  
+Jolly Nature  
+- Heavy Slam  
+- Bullet Punch  
+- Psychic Fangs  
+- Knock Off  

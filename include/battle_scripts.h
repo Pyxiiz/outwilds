@@ -396,6 +396,8 @@ extern const u8 BattleScript_AttackWeakenedByStrongWinds[];
 extern const u8 BattleScript_BlockedByPrimalWeather[];
 extern const u8 BattleScript_BlockedByOverworldWeather[];
 extern const u8 BattleScript_PrimalReversion[];
+extern const u8 BattleScript_GenesisReversion[];
+extern const u8 BattleScript_BlockedByPrimalTerrain[];
 extern const u8 BattleScript_SelectingNotAllowedMoveGorillaTactics[];
 extern const u8 BattleScript_SelectingNotAllowedMoveGorillaTacticsInPalace[];
 extern const u8 BattleScript_WanderingSpiritActivates[];
@@ -744,5 +746,8 @@ extern const u8 BattleScript_TarShotMessage[];
 extern const u8 BattleScript_Stockpile[];
 extern const u8 BattleScript_Memento[];
 extern const u8 BattleScript_TakeHeart[];
+extern const u8 BattleScript_EtherealStageActivates[];
+extern const u8 BattleScript_RageOfFrenzyActivates[];
+extern const u8 BattleScript_RageOfFrenzyBlocksStatus[];
 
 #endif // GUARD_BATTLE_SCRIPTS_H

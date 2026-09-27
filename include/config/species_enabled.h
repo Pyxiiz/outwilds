@@ -15,6 +15,7 @@
 #define P_GEN_7_POKEMON                  TRUE // Generation 7 Pokémon (SM, USUM, LGPE)
 #define P_GEN_8_POKEMON                  TRUE // Generation 8 Pokémon (SwSh, BDSP, LA)
 #define P_GEN_9_POKEMON                  TRUE // Generation 9 Pokémon (SV)
+#define P_CUSTOM_POKEMON                 TRUE // Customs
 
 // Setting this to TRUE will add the new evolutions to the Regional Dex.
 #define P_NEW_EVOS_IN_REGIONAL_DEX       TRUE
@@ -602,5 +603,19 @@
 #define P_FAMILY_IRON_CROWN              P_GEN_9_POKEMON
 #define P_FAMILY_TERAPAGOS               P_GEN_9_POKEMON
 #define P_FAMILY_PECHARUNT               P_GEN_9_POKEMON
+
+#define P_FAMILY_CAPILLAURO              P_CUSTOM_POKEMON
+#define P_FAMILY_FABLIDA                 P_CUSTOM_POKEMON
+#define P_FAMILY_IRACOR                  P_CUSTOM_POKEMON
+#define P_FAMILY_TAPU_PELE               P_CUSTOM_POKEMON
+#define P_FAMILY_SINTUMORI               P_CUSTOM_POKEMON
+#define P_FAMILY_ARNGRIM                 P_CUSTOM_POKEMON
+#define P_FAMILY_KITSOKAMI               P_CUSTOM_POKEMON
+#define P_FAMILY_BLAZE_BRUSH             P_CUSTOM_POKEMON
+#define P_FAMILY_SUNKEN_STAR             P_CUSTOM_POKEMON
+#define P_FAMILY_IRON_ECHO               P_CUSTOM_POKEMON
+#define P_FAMILY_IRON_SIGNAL             P_CUSTOM_POKEMON
+#define P_FAMILY_KRYPE                   P_CUSTOM_POKEMON
+#define P_FAMILU_JETRAGON                P_CUSTOM_POKEMON
 
 #endif // GUARD_CONFIG_SPECIES_ENABLED_H

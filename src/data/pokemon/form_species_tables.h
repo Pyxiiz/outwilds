@@ -1811,6 +1811,9 @@ static const u16 sAvaluggFormSpeciesIdTable[] = {
 #if P_HISUIAN_FORMS
     SPECIES_AVALUGG_HISUI,
 #endif
+#if P_MEGA_EVOLUTIONS
+    SPECIES_AVALUGG_MEGA,
+#endif
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_BERGMITE
@@ -2568,3 +2571,49 @@ static const u16 sTerapagosFormSpeciesIdTable[] = {
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_TERAPAGOS
+
+#if P_FAMILY_IRACOR
+static const u16 sIracorFormSpeciesIdTable[] = {
+    SPECIES_IRACOR,
+    SPECIES_IRACOR_GENESIS,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_IRACOR
+
+#if P_FAMILY_FABLIDA
+static const u16 sFablidaFormSpeciesIdTable[] = {
+    SPECIES_FABLIDA,
+    SPECIES_FABLIDA_GENESIS,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_FABLIDA
+
+#if P_FAMILY_SKORUPI
+static const u16 sDrapionFormSpeciesIdTable[] = {
+    SPECIES_DRAPION,
+    SPECIES_DRAPION_MEGA,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_DRAPION
+
+#if P_FAMILY_DHELMISE
+static const u16 sDhelmiseFormSpeciesIdTable[] = {
+    SPECIES_DHELMISE,
+    SPECIES_DHELMISE_MEGA,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_DHELMISE
+
+#if P_FAMILY_ARNGRIM
+static const u16 sIchorbodFormSpeciesIdTable[] = {
+    SPECIES_ICHORBOD,
+    SPECIES_ICHORBOD_MEGA,
+    FORM_SPECIES_END,
+};
+
+static const u16 sLokasennaFormSpeciesIdTable[] = {
+    SPECIES_LOKASENNA,
+    SPECIES_LOKASENNA_MEGA,
+    FORM_SPECIES_END,
+};
+#endif //P_FAMILY_ARNGRIM

@@ -6394,6 +6394,77 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .formSpeciesIdTable = sAvaluggFormSpeciesIdTable,
     },
 #endif //P_HISUIAN_FORMS
+
+[SPECIES_AVALUGG_MEGA] =
+    {
+        .baseHP        = 95,
+        .baseAttack    = 133,
+        .baseDefense   = 232,
+        .baseSpeed     = 15,
+        .baseSpAttack  = 44,
+        .baseSpDefense = 95,
+        .types = MON_TYPES(TYPE_ICE, TYPE_DRAGON),
+        .catchRate = 55,
+        .expYield = 180,
+        .evYield_Defense = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+        .abilities = { ABILITY_ICE_SCALES, ABILITY_ICE_SCALES, ABILITY_ICE_SCALES },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Avalugg"),
+        .cryId = CRY_AVALUGG,
+        .natDexNum = NATIONAL_DEX_AVALUGG,
+        .categoryName = _("Iceberg"),
+        .height = 20,
+        .weight = 5050,
+        .description = COMPOUND_STRING(
+            "To combat global warming, meteorologists\n"
+            "use Mega Avalugg's near-absolute\n"
+            "zero ice to spray snow and bring down\n"
+            "temperatures near ice caps."),
+        .pokemonScale = 261,
+        .pokemonOffset = 1,
+        .trainerScale = 334,
+        .trainerOffset = 4,
+        .frontPic = gMonFrontPic_AvaluggMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 56),
+        .frontPicYOffset = 4,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 20),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPic = gMonBackPic_AvaluggMega,
+        .backPicSize = MON_COORDS_SIZE(64, 40),
+        .backPicYOffset = 12,
+        .backAnimId = BACK_ANIM_V_SHAKE_LOW,
+        .palette = gMonPalette_AvaluggMega,
+        .shinyPalette = gMonShinyPalette_AvaluggMega,
+        .iconSprite = gMonIcon_AvaluggMega,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, -1, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Avalugg)
+        OVERWORLD(
+            sPicTable_Avalugg,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Avalugg,
+            gShinyOverworldPalette_Avalugg
+        )
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sAvaluggLevelUpLearnset,
+        .teachableLearnset = sAvaluggTeachableLearnset,
+        .formSpeciesIdTable = sAvaluggFormSpeciesIdTable,
+        .formChangeTable = sAvaluggFormChangeTable,
+    },
 #endif //P_FAMILY_BERGMITE
 
 #if P_FAMILY_NOIBAT

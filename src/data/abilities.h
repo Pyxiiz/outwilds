@@ -2550,4 +2550,87 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .name = _("Spicy Spray"),
         .description = COMPOUND_STRING("Burns the foe when damaged."),
     },
+
+    //Custom Abilities
+
+    [ABILITY_HYDRAULICS] =
+    {
+        .name = _("Hydraulics"),
+        .description = COMPOUND_STRING("Boosts beam moves."),
+        .aiRating = 7,
+    },
+	
+    [ABILITY_COMBAT_SHIELD] =
+    {
+        .name = _("Combat Shield"),
+        .description = COMPOUND_STRING("Resist fairy. Use DEF as ATK."),
+        .aiRating = 8,
+    },
+	
+	
+    [ABILITY_ETHEREAL_STAGE] =
+    {
+        .name = _("Etherial Stage"),
+        .description = COMPOUND_STRING("Field becomes ethereal."),
+        .aiRating = 10,
+    },
+	
+    [ABILITY_RAGE_OF_FRENZY] =
+    {
+        .name = _("Rage of Frenzy"),
+        .description = COMPOUND_STRING("Moves crit, but HP drains."),
+        .aiRating = 10,
+        .cantBeCopied = TRUE,
+        .cantBeSwapped = TRUE,
+        .cantBeTraced = TRUE,
+        .cantBeSuppressed = TRUE,
+        .cantBeOverwritten = TRUE,
+        .failsOnImposter = TRUE,
+    },	
+	
+
+    [ABILITY_PURIFIER] =
+    {
+        .name = _("Purifier"),
+        .description = COMPOUND_STRING("Immune to poison."),
+        .aiRating = 5,
+    },
+	
+    [ABILITY_ENKINDLE] =
+    {
+        .name = _("Enkindle"),
+        .description = COMPOUND_STRING("Normal moves become Fire."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_LAST_STAND] =
+    {
+        .name = _("Last Stand"),
+        .description = COMPOUND_STRING("Stronger when last alive."),
+        .aiRating = 8,
+    },
+
+    [ABILITY_NOMAD] =
+    {
+        .name = _("Nomad"),
+        .description = COMPOUND_STRING("Stronger in any Weather"),
+        .aiRating = 4,
+    };
+
+    [ABILITY_SPIRIT_AEGIS] =
+    {
+        .name = _("Spirit Aegis"),
+        .description = COMPOUND_STRING("Sturdy + Stronger when low HP"),
+        .aiRating = 7,
+        .breakable = TRUE,
+    };
+
+    [ABILITY_CRYOGENIAN] =
+    {
+        .name = _("Cryogenian"),
+        .description = COMPOUND_STRING("Summons eternal snow"),
+        .aiRating = 7,
+        .breakable = TRUE,
+    };
+
 };

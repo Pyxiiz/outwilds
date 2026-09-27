@@ -1030,6 +1030,23 @@ static bool32 HandleEndTurnRoost(enum BattlerId battler)
     return effect;
 }
 
+static bool32 HandleEndTurnRageOfFrenzy(u32 battler)
+{
+    bool32 effect = FALSE;
+
+    gBattleStruct->eventState.endTurnBattler++;
+
+    if (IsBattlerAlive(battler)
+     && IsAbilityAndRecord(battler, GetBattlerAbility(battler), ABILITY_RAGE_OF_FRENZY))
+    {
+        SetPassiveDamageAmount(battler, GetNonDynamaxMaxHP(battler) / 10);
+        BattleScriptExecute(BattleScript_RageOfFrenzyActivates);
+        effect = TRUE;
+    }
+
+    return effect;
+}
+
 static bool32 HandleEndTurnSecondEventBlock(enum BattlerId battler)
 {
     bool32 effect = FALSE;

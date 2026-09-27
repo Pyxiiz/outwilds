@@ -18209,7 +18209,9 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .formChangeTable = sEeveeFormChangeTable,
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_THUNDER_STONE, SPECIES_JOLTEON},
                                 {EVO_ITEM, ITEM_WATER_STONE, SPECIES_VAPOREON},
-                                {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_FLAREON}
+                                {EVO_ITEM, ITEM_FIRE_STONE, SPECIES_FLAREON},
+                                {EVO_ITEM, ITEM_DAWN_STONE, SPECIES_WYVERION},
+                                {EVO_LEVEL, 0, SPECIES_MORDEON, CONDITIONS({IF_RECOIL_DAMAGE_GE, 133})}
                             #if P_GEN_6_CROSS_EVOS
                                 ,{EVO_LEVEL, 0, SPECIES_SYLVEON, CONDITIONS({IF_MIN_FRIENDSHIP, FRIENDSHIP_EVO_THRESHOLD}, {IF_KNOWS_MOVE_TYPE, TYPE_FAIRY})}
                             #endif
@@ -18496,12 +18498,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_FLAREON] =
     {
-        .baseHP        = 65,
+        .baseHP        = 110,
         .baseAttack    = 130,
         .baseDefense   = 60,
-        .baseSpeed     = 65,
-        .baseSpAttack  = P_UPDATED_STATS >= GEN_2 ? 95 : 110,
-        .baseSpDefense = 110,
+        .baseSpeed     = 95,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 65,
         .types = MON_TYPES(TYPE_FIRE),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 184 : 198,
@@ -18511,7 +18513,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLASH_FIRE, ABILITY_GUTS },
+        .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLASH_FIRE, ABILITY_ENKINDLE },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Flareon"),
         .cryId = CRY_FLAREON,
@@ -18558,6 +18560,116 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         )
         .levelUpLearnset = sFlareonLevelUpLearnset,
         .teachableLearnset = sFlareonTeachableLearnset,
+    },
+
+    [SPECIES_WYVEREON] =
+    {
+        .baseHP        = 110,
+        .baseAttack    = 65,
+        .baseDefense   = 130,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 95,
+        .types = MON_TYPES(TYPE_DRAGON),
+        .catchRate = 45,
+        .expYield = 184,
+        .evYield_Defense = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 35,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_COMBAT_SHIELD, ABILITY_COMBAT_SHIELD, ABILITY_INTIMIDATE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Wyvereon"),
+        .cryId = CRY_SALAMENCE, 
+        .natDexNum = NATIONAL_DEX_WYVEREON,
+        .categoryName = _("Hunter"),
+        .height = 10,
+        .weight = 330,
+        .description = COMPOUND_STRING(
+            "It folds down its ears to form a mask\n"
+            "which is stronger than kevlar. When in\n"
+            "combat, this Pokemon radiates draconic \n"
+            "energy."),
+        .pokemonScale = 363,
+        .pokemonOffset = 14,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Wyvereon,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 20),
+        ),
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPic = gMonBackPic_Wyvereon,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 7,
+        .backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Wyvereon,
+        .shinyPalette = gMonShinyPalette_Wyvereon,
+        .iconSprite = gMonIcon_Wyvereon,
+        .iconPalIndex = 4,
+        FOOTPRINT(Wyvereon)
+        .levelUpLearnset = sWyvereonLevelUpLearnset,
+        .teachableLearnset = sWyvereonTeachableLearnset,
+    },
+
+    [SPECIES_MORDEON] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 95,
+        .baseDefense   = 65,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 130,
+        .baseSpDefense = 65,
+        .types = MON_TYPES(TYPE_GHOST),
+        .catchRate = 45,
+        .expYield = 184,
+        .evYield_SpAttack = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 35,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_SPIRIT_AEGIS, ABILITY_SPIRIT_AEGIS, ABILITY_CLEAR_BODY },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Mordeon"),
+        .cryId = CRY_ZACIAN, 
+        .natDexNum = NATIONAL_DEX_MORDEON,
+        .categoryName = _("Last Breath"),
+        .height = 10,
+        .weight = 330,
+        .description = COMPOUND_STRING(
+            "Most of its corporeal body is gone.\n"
+            "The only thing keeping its spirit in\n"
+            "this world is the memories it has\n"
+            "with its trainer."),
+        .pokemonScale = 363,
+        .pokemonOffset = 14,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Wyvereon,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 20),
+        ),
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPic = gMonBackPic_Wyvereon,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 7,
+        .backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Wyvereon,
+        .shinyPalette = gMonShinyPalette_Wyvereon,
+        .iconSprite = gMonIcon_Wyvereon,
+        .iconPalIndex = 4,
+        FOOTPRINT(Wyvereon)
+        .levelUpLearnset = sWyvereonLevelUpLearnset,
+        .teachableLearnset = sWyvereonTeachableLearnset,
     },
 
 #if P_GEN_2_CROSS_EVOS

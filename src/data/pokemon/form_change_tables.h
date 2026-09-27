@@ -1179,6 +1179,30 @@ static const struct Fusion sKyuremFusionTable[] = {
     {0, ITEM_DNA_SPLICERS,   SPECIES_KYUREM,   SPECIES_ZEKROM,    SPECIES_KYUREM_BLACK, MOVE_NONE, SWAP_EXTRA_MOVES_KYUREM_BLACK},
     {FUSION_TERMINATOR},
 };
+static const struct FormChange sKyuremWhiteFormChangeTable[] =
+{
+#if P_ULTRA_BURST_FORMS
+    {FORM_CHANGE_BATTLE_ULTRA_BURST,    SPECIES_KYUREM_ULTRA, ITEM_ULTRAKYURIUM_Z},
+#endif
+    {FORM_CHANGE_FAINT,                 SPECIES_KYUREM_WHITE},
+    {FORM_CHANGE_END_BATTLE,            SPECIES_KYUREM_WHITE},
+    {FORM_CHANGE_TERMINATOR},
+};
+static const struct FormChange sKyuremBlackFormChangeTable[] =
+{
+#if P_ULTRA_BURST_FORMS
+    {FORM_CHANGE_BATTLE_ULTRA_BURST,    SPECIES_KYUREM_ULTRA, ITEM_ULTRAKYURIUM_Z},
+#endif
+    {FORM_CHANGE_FAINT,                 SPECIES_KYUREM_BLACK},
+    {FORM_CHANGE_END_BATTLE,            SPECIES_KYUREM_BLACK},
+    {FORM_CHANGE_TERMINATOR},
+};
+static const struct FormChange sNecrozmaUltraFormChangeTable[] =
+{
+    {FORM_CHANGE_FAINT},
+    {FORM_CHANGE_END_BATTLE},
+    {FORM_CHANGE_TERMINATOR},
+};
 #endif //P_FAMILY_KYUREM
 
 #if P_FAMILY_KELDEO
@@ -2178,6 +2202,68 @@ static const struct FormChange sTerapagosFormChangeTable[] =
     {FORM_CHANGE_TERMINATOR},
 };
 #endif //P_FAMILY_TERAPAGOS
+
+#if P_FAMILY_FABLIDA
+static const struct FormChange sFablidaFormChangeTable[] =
+{
+    {FORM_CHANGE_BATTLE_PRIMAL_REVERSION, SPECIES_FABLIDA_GENESIS, ITEM_GENESIS_ORB},
+    {FORM_CHANGE_END_BATTLE,              SPECIES_FABLIDA},
+    {FORM_CHANGE_TERMINATOR},
+};
+#endif //P_FAMILY_FABLIDA
+
+#if P_FAMILY_SKORUPI
+static const struct FormChange sDrapionFormChangeTable[] =
+{
+#if P_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_DRAPION_MEGA, ITEM_DRAPIONITE},
+#endif
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_DRAPION},
+    {FORM_CHANGE_TERMINATOR},
+};
+#endif //P_FAMILY_SKORUPI
+
+#if P_FAMILY_BERGMITE
+static const struct FormChange sAvaluggFormChangeTable[] =
+{
+#if P_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_AVALUGG_MEGA, ITEM_AVALITE},
+#endif
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_AVALUGG},
+    {FORM_CHANGE_TERMINATOR},
+};
+#endif //P_FAMILY_BERGMITE
+
+#if P_FAMILY_DHELMISE
+static const struct FormChange sDhelmiseFormChangeTable[] =
+{
+#if P_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_DHELMISE_MEGA, ITEM_DHELMISITE},
+#endif
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_DHELMISE},
+    {FORM_CHANGE_TERMINATOR},
+};
+#endif //P_FAMILY_DHELMISE
+
+#if P_FAMILY_ARNGRIM
+static const struct FormChange sIchorbodFormChangeTable[] =
+{
+#if P_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_ICHORBOD_MEGA, ITEM_ICHORITE},
+#endif
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_ICHORBOD},
+    {FORM_CHANGE_TERMINATOR},
+};
+
+static const struct FormChange sLokasennaFormChangeTable[] =
+{
+#if P_MEGA_EVOLUTIONS
+    {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_LOKASENNA_MEGA, ITEM_LOKASENNITE},
+#endif
+    {FORM_CHANGE_END_BATTLE,                    SPECIES_LOKASENNA},
+    {FORM_CHANGE_TERMINATOR},
+};
+#endif //P_FAMILY_ARNGRIM
 
 #undef WHEN_LEARNED
 #undef WHEN_FORGOTTEN

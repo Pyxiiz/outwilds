@@ -105,6 +105,7 @@ bool32 CanAbilityAbsorbMove(struct DamageContext *ctx);
 bool32 TryFieldEffects(enum FieldEffectCases caseId);
 u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum Ability ability, enum Move move, bool32 shouldAbilityTrigger);
 bool32 TryPrimalReversion(enum BattlerId battler);
+bool32 TryGenesisReversion(enum BattlerId battler);
 bool32 IsNeutralizingGasOnField(void);
 bool32 IsMoldBreakerTypeAbility(enum BattlerId battler, enum Ability ability, enum Move move);
 enum Ability GetBattlerAbilityIgnoreMoldBreaker(enum BattlerId battler);
@@ -222,7 +223,7 @@ bool32 IsBattlerTerrainAffected(enum BattlerId battler, enum Ability ability, en
 enum Stat GetHighestStatId(enum BattlerId battler);
 enum Stat GetParadoxHighestStatId(enum BattlerId battler);
 enum Stat GetParadoxBoostedStatId(enum BattlerId battler);
-
+bool32 IsLastMonAlive(enum BattlerID battler);
 bool32 CanBeSlept(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Ability abilityDef, enum SleepClauseBlock isBlockedBySleepClause);
 bool32 CanBePoisoned(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Ability abilityAtk, enum Ability abilityDef);
 bool32 CanBeBurned(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Ability ability);
